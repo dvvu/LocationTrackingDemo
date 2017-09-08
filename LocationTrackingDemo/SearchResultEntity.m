@@ -34,9 +34,9 @@
 
 - (void)setupValue {
     
-    if ([_jsonDictionary[@"terms"] objectAtIndex:0][@"value"] != [NSNull null]) {
-        
-        _placeName = [_jsonDictionary[@"terms"] objectAtIndex:0][@"value"];
+    if (_jsonDictionary[@"description"] != [NSNull null]) {
+
+        _placeName = _jsonDictionary[@"description"];
     }
 }
 
