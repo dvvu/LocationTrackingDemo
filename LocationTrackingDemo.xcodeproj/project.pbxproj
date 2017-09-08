@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC544426B6E01290AC51E6EB /* Pods_LocationTrackingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645E52B5FDE7F57396A6045B /* Pods_LocationTrackingDemo.framework */; };
 		EA72BA681F5F967500A74EEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA671F5F967500A74EEF /* main.m */; };
 		EA72BA6B1F5F967500A74EEF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA6A1F5F967500A74EEF /* AppDelegate.m */; };
 		EA72BA6E1F5F967500A74EEF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA6D1F5F967500A74EEF /* ViewController.m */; };
@@ -15,6 +16,14 @@
 		EA72BA761F5F967500A74EEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA72BA741F5F967500A74EEF /* LaunchScreen.storyboard */; };
 		EA72BA811F5F967500A74EEF /* LocationTrackingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA801F5F967500A74EEF /* LocationTrackingDemoTests.m */; };
 		EA72BA8C1F5F967500A74EEF /* LocationTrackingDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA8B1F5F967500A74EEF /* LocationTrackingDemoUITests.m */; };
+		EA72BA9B1F5FD56F00A74EEF /* DirectionCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA9A1F5FD56F00A74EEF /* DirectionCustomView.m */; };
+		EA72BAA01F5FFA3100A74EEF /* AnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA9F1F5FFA3100A74EEF /* AnimationViewController.m */; };
+		EA7D93751F60F7840064C95E /* GoogleMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93741F60F7840064C95E /* GoogleMapManager.m */; };
+		EA7D93781F60FEF80064C95E /* SupportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93771F60FEF80064C95E /* SupportManager.m */; };
+		EA7D937C1F61537D0064C95E /* SearchResultsTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D937B1F61537D0064C95E /* SearchResultsTableViewSource.m */; };
+		EA7D93801F6155FC0064C95E /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D937F1F6155FC0064C95E /* SearchResultTableViewCell.m */; };
+		EA7D93841F615FFB0064C95E /* SearchResultEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93831F615FFB0064C95E /* SearchResultEntity.m */; };
+		EA7D93871F6169B00064C95E /* ThreadSafeForMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93861F6169B00064C95E /* ThreadSafeForMutableArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43F6D66067A82774E6C4DA5D /* Pods-LocationTrackingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		645E52B5FDE7F57396A6045B /* Pods_LocationTrackingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationTrackingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D50E617F41BCDDF95A11D92 /* Pods-LocationTrackingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.release.xcconfig"; sourceTree = "<group>"; };
 		EA72BA631F5F967500A74EEF /* LocationTrackingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTrackingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA72BA671F5F967500A74EEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA72BA691F5F967500A74EEF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +63,25 @@
 		EA72BA871F5F967500A74EEF /* LocationTrackingDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationTrackingDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA72BA8B1F5F967500A74EEF /* LocationTrackingDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationTrackingDemoUITests.m; sourceTree = "<group>"; };
 		EA72BA8D1F5F967500A74EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA72BA991F5FD56F00A74EEF /* DirectionCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionCustomView.h; sourceTree = "<group>"; };
+		EA72BA9A1F5FD56F00A74EEF /* DirectionCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionCustomView.m; sourceTree = "<group>"; };
+		EA72BA9C1F5FE4E600A74EEF /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		EA72BA9D1F5FE51F00A74EEF /* DirectionCustomViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DirectionCustomViewDelegate.h; sourceTree = "<group>"; };
+		EA72BA9E1F5FFA3100A74EEF /* AnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
+		EA72BA9F1F5FFA3100A74EEF /* AnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
+		EA7D93731F60F7840064C95E /* GoogleMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapManager.h; sourceTree = "<group>"; };
+		EA7D93741F60F7840064C95E /* GoogleMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapManager.m; sourceTree = "<group>"; };
+		EA7D93761F60FEF80064C95E /* SupportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportManager.h; sourceTree = "<group>"; };
+		EA7D93771F60FEF80064C95E /* SupportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportManager.m; sourceTree = "<group>"; };
+		EA7D937A1F61537D0064C95E /* SearchResultsTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewSource.h; sourceTree = "<group>"; };
+		EA7D937B1F61537D0064C95E /* SearchResultsTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewSource.m; sourceTree = "<group>"; };
+		EA7D937E1F6155FC0064C95E /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
+		EA7D937F1F6155FC0064C95E /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
+		EA7D93821F615FFB0064C95E /* SearchResultEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultEntity.h; sourceTree = "<group>"; };
+		EA7D93831F615FFB0064C95E /* SearchResultEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultEntity.m; sourceTree = "<group>"; };
+		EA7D93851F6169B00064C95E /* ThreadSafeForMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeForMutableArray.h; sourceTree = "<group>"; };
+		EA7D93861F6169B00064C95E /* ThreadSafeForMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeForMutableArray.m; sourceTree = "<group>"; };
+		EA7D93891F616CB60064C95E /* SearchResultsTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC544426B6E01290AC51E6EB /* Pods_LocationTrackingDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +110,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD68B0A38594E9354E53CCB0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43F6D66067A82774E6C4DA5D /* Pods-LocationTrackingDemo.debug.xcconfig */,
+				8D50E617F41BCDDF95A11D92 /* Pods-LocationTrackingDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DBB02CFB6ABDAA87FC37FAFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				645E52B5FDE7F57396A6045B /* Pods_LocationTrackingDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EA72BA5A1F5F967500A74EEF = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +134,8 @@
 				EA72BA7F1F5F967500A74EEF /* LocationTrackingDemoTests */,
 				EA72BA8A1F5F967500A74EEF /* LocationTrackingDemoUITests */,
 				EA72BA641F5F967500A74EEF /* Products */,
+				AD68B0A38594E9354E53CCB0 /* Pods */,
+				DBB02CFB6ABDAA87FC37FAFD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +152,15 @@
 		EA72BA651F5F967500A74EEF /* LocationTrackingDemo */ = {
 			isa = PBXGroup;
 			children = (
-				EA72BA691F5F967500A74EEF /* AppDelegate.h */,
-				EA72BA6A1F5F967500A74EEF /* AppDelegate.m */,
+				EA7D93701F60F7170064C95E /* delegate&constants */,
+				EA7D93881F616C740064C95E /* ThreadSafe */,
+				EA7D93811F615FE30064C95E /* SearchResultEntity */,
+				EA7D937D1F6155D40064C95E /* SearchResultTableViewCell */,
+				EA7D93791F61534E0064C95E /* SearchResultsTableViewSource */,
+				EA7D93721F60F7650064C95E /* GoogleMapManager */,
+				EA7D93711F60F7430064C95E /* DirectionCustomView */,
 				EA72BA6C1F5F967500A74EEF /* ViewController.h */,
 				EA72BA6D1F5F967500A74EEF /* ViewController.m */,
-				EA72BA6F1F5F967500A74EEF /* Main.storyboard */,
-				EA72BA721F5F967500A74EEF /* Assets.xcassets */,
-				EA72BA741F5F967500A74EEF /* LaunchScreen.storyboard */,
-				EA72BA771F5F967500A74EEF /* Info.plist */,
 				EA72BA661F5F967500A74EEF /* Supporting Files */,
 			);
 			path = LocationTrackingDemo;
@@ -117,7 +169,17 @@
 		EA72BA661F5F967500A74EEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EA72BA691F5F967500A74EEF /* AppDelegate.h */,
+				EA72BA6A1F5F967500A74EEF /* AppDelegate.m */,
+				EA72BA6F1F5F967500A74EEF /* Main.storyboard */,
+				EA72BA721F5F967500A74EEF /* Assets.xcassets */,
+				EA72BA741F5F967500A74EEF /* LaunchScreen.storyboard */,
+				EA72BA771F5F967500A74EEF /* Info.plist */,
+				EA72BA9E1F5FFA3100A74EEF /* AnimationViewController.h */,
+				EA72BA9F1F5FFA3100A74EEF /* AnimationViewController.m */,
 				EA72BA671F5F967500A74EEF /* main.m */,
+				EA7D93761F60FEF80064C95E /* SupportManager.h */,
+				EA7D93771F60FEF80064C95E /* SupportManager.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,6 +202,70 @@
 			path = LocationTrackingDemoUITests;
 			sourceTree = "<group>";
 		};
+		EA7D93701F60F7170064C95E /* delegate&constants */ = {
+			isa = PBXGroup;
+			children = (
+				EA72BA9C1F5FE4E600A74EEF /* Constants.h */,
+				EA72BA9D1F5FE51F00A74EEF /* DirectionCustomViewDelegate.h */,
+				EA7D93891F616CB60064C95E /* SearchResultsTableViewDelegate.h */,
+			);
+			name = "delegate&constants";
+			sourceTree = "<group>";
+		};
+		EA7D93711F60F7430064C95E /* DirectionCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				EA72BA991F5FD56F00A74EEF /* DirectionCustomView.h */,
+				EA72BA9A1F5FD56F00A74EEF /* DirectionCustomView.m */,
+			);
+			name = DirectionCustomView;
+			sourceTree = "<group>";
+		};
+		EA7D93721F60F7650064C95E /* GoogleMapManager */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D93731F60F7840064C95E /* GoogleMapManager.h */,
+				EA7D93741F60F7840064C95E /* GoogleMapManager.m */,
+			);
+			name = GoogleMapManager;
+			sourceTree = "<group>";
+		};
+		EA7D93791F61534E0064C95E /* SearchResultsTableViewSource */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D937A1F61537D0064C95E /* SearchResultsTableViewSource.h */,
+				EA7D937B1F61537D0064C95E /* SearchResultsTableViewSource.m */,
+			);
+			name = SearchResultsTableViewSource;
+			sourceTree = "<group>";
+		};
+		EA7D937D1F6155D40064C95E /* SearchResultTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D937E1F6155FC0064C95E /* SearchResultTableViewCell.h */,
+				EA7D937F1F6155FC0064C95E /* SearchResultTableViewCell.m */,
+			);
+			name = SearchResultTableViewCell;
+			sourceTree = "<group>";
+		};
+		EA7D93811F615FE30064C95E /* SearchResultEntity */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D93821F615FFB0064C95E /* SearchResultEntity.h */,
+				EA7D93831F615FFB0064C95E /* SearchResultEntity.m */,
+			);
+			name = SearchResultEntity;
+			sourceTree = "<group>";
+		};
+		EA7D93881F616C740064C95E /* ThreadSafe */ = {
+			isa = PBXGroup;
+			children = (
+				EA7D93851F6169B00064C95E /* ThreadSafeForMutableArray.h */,
+				EA7D93861F6169B00064C95E /* ThreadSafeForMutableArray.m */,
+			);
+			name = ThreadSafe;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA72BA901F5F967500A74EEF /* Build configuration list for PBXNativeTarget "LocationTrackingDemo" */;
 			buildPhases = (
+				D80BAC14DA39983EEB1C7F99 /* [CP] Check Pods Manifest.lock */,
 				EA72BA5F1F5F967500A74EEF /* Sources */,
 				EA72BA601F5F967500A74EEF /* Frameworks */,
 				EA72BA611F5F967500A74EEF /* Resources */,
+				0FF03BFB8012C4E02A537570 /* [CP] Embed Pods Frameworks */,
+				51194773A45F8C002E35EA50 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,6 +336,7 @@
 				TargetAttributes = {
 					EA72BA621F5F967500A74EEF = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2FXVJFZPXW;
 						ProvisioningStyle = Automatic;
 					};
 					EA72BA7B1F5F967500A74EEF = {
@@ -268,6 +398,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0FF03BFB8012C4E02A537570 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51194773A45F8C002E35EA50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D80BAC14DA39983EEB1C7F99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA72BA5F1F5F967500A74EEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,7 +453,15 @@
 			files = (
 				EA72BA6E1F5F967500A74EEF /* ViewController.m in Sources */,
 				EA72BA6B1F5F967500A74EEF /* AppDelegate.m in Sources */,
+				EA72BAA01F5FFA3100A74EEF /* AnimationViewController.m in Sources */,
+				EA7D93841F615FFB0064C95E /* SearchResultEntity.m in Sources */,
+				EA7D93781F60FEF80064C95E /* SupportManager.m in Sources */,
+				EA7D93751F60F7840064C95E /* GoogleMapManager.m in Sources */,
+				EA7D93871F6169B00064C95E /* ThreadSafeForMutableArray.m in Sources */,
+				EA7D937C1F61537D0064C95E /* SearchResultsTableViewSource.m in Sources */,
+				EA7D93801F6155FC0064C95E /* SearchResultTableViewCell.m in Sources */,
 				EA72BA681F5F967500A74EEF /* main.m in Sources */,
+				EA72BA9B1F5FD56F00A74EEF /* DirectionCustomView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -414,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,8 +610,10 @@
 		};
 		EA72BA911F5F967500A74EEF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43F6D66067A82774E6C4DA5D /* Pods-LocationTrackingDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2FXVJFZPXW;
 				INFOPLIST_FILE = LocationTrackingDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VNG.LocationTrackingDemo;
@@ -435,8 +623,10 @@
 		};
 		EA72BA921F5F967500A74EEF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D50E617F41BCDDF95A11D92 /* Pods-LocationTrackingDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2FXVJFZPXW;
 				INFOPLIST_FILE = LocationTrackingDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VNG.LocationTrackingDemo;
@@ -509,6 +699,7 @@
 				EA72BA921F5F967500A74EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA72BA931F5F967500A74EEF /* Build configuration list for PBXNativeTarget "LocationTrackingDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +708,7 @@
 				EA72BA951F5F967500A74EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA72BA961F5F967500A74EEF /* Build configuration list for PBXNativeTarget "LocationTrackingDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +717,7 @@
 				EA72BA981F5F967500A74EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
