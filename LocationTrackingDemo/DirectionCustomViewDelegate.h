@@ -20,7 +20,7 @@
 @protocol DirectionCustomViewDelegate <NSObject>
 
 #pragma mark - drawDestination
-- (void)drawDestination;
+- (void)drawDestinationWithPlaceName:(NSString *)startPlaceName andDestinationPlaceName:(NSString *)destinationPlaceName;
 
 #pragma mark - getCurrentLocation
 - (void)getCurrentLocation:(CGPoint)currentPoint;

@@ -10,6 +10,12 @@
 
 @interface GoogleMapManager : NSObject
 
+#pragma mark - drawDiectionWithStartLocation
+- (void)drawDiectionWithStartLocation:(CLLocation *)startLocation andDestinationLocation:(CLLocation *)destinationLocation completion:(void (^)(DirectionDetailEntity *))completion;
+
+#pragma mark - drawDiectionWithPlaceName
+- (void)drawDiectionWithPlaceName:(NSString *)startString andDestinationName:(NSString *)destinationString completion:(void (^)(DirectionDetailEntity *))completion;
+
 #pragma mark - getAddressFromLocation
 - (void)getAddressFromLocation:(CLLocation *)loaction withCompletion:(void (^)(NSString* placeName, NSError *error))completion;
 

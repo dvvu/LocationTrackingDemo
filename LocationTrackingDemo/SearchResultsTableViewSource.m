@@ -54,7 +54,7 @@
             
             for (NSDictionary* jsonDictionary in results) {
                 
-                SearchResultEntity* searchResultEntity = [[SearchResultEntity alloc] initWithJSONData:jsonDictionary];
+                SearchResultEntity* searchResultEntity = [[SearchResultEntity alloc] initWithData:jsonDictionary];
                 [_resultEntiries addObject:searchResultEntity];
             }
         }

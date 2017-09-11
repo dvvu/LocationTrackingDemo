@@ -11,8 +11,9 @@
 @interface SearchResultEntity : NSObject
 
 @property (nonatomic) NSString* placeName;
+@property (nonatomic) NSString* placeID;
 
-#pragma mark - initWithJSONData
-- (instancetype)initWithJSONData:(NSDictionary *)jsonDictionary;
+#pragma mark - initWithData
+- (instancetype)initWithData:(NSDictionary *)jsonDictionary;
 
 @end

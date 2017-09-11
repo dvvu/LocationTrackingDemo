@@ -165,7 +165,7 @@
     
     if (_delegate) {
         
-        [_delegate drawDestination];
+        [_delegate drawDestinationWithPlaceName:_startTextField.text andDestinationPlaceName:_destinationTextField.text];
         [self hideKeyboard];
     }
 }

@@ -8,17 +8,21 @@
 
 #import "DirectionCustomViewDelegate.h"
 #import <CoreLocation/CoreLocation.h>
+#import "DetailCustomViewDelegate.h"
+#import "DirectionDetailEntity.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "DirectionCustomView.h"
 #import "GoogleMapManager.h"
+#import "DetailCustomView.h"
 #import "ViewController.h"
 #import "SupportManager.h"
 #import "Masonry.h"
 
-@interface ViewController () <DirectionCustomViewDelegate>
+@interface ViewController () <DirectionCustomViewDelegate, DetailCustomViewDelegate>
 
 @property (nonatomic) CLLocationManager* locationManager;
 @property (nonatomic) DirectionCustomView* directionView;
+@property (nonatomic) DetailCustomView* detailCustomView;
 @property (nonatomic) GoogleMapManager* googleMapManager;
 @property (nonatomic) GMSMarker* myloactionMarker;
 @property (nonatomic) CLLocation* currentLocation;
@@ -99,6 +103,20 @@
     }];
     
     [_directionView setHidden:YES];
+    
+    _detailCustomView = [[DetailCustomView alloc] init];
+    _detailCustomView.delegate = self;
+    [self.view addSubview:_detailCustomView];
+    
+    [_detailCustomView mas_makeConstraints:^(MASConstraintMaker* make) {
+        
+        make.bottom.equalTo(_containMapView.mas_bottom).offset(0);
+        make.right.equalTo(_containMapView.mas_right).offset(0);
+        make.width.equalTo(@200);
+        make.height.equalTo(@70);
+    }];
+    
+    [_detailCustomView setHidden:YES];
 }
 
 #pragma mark - direction
@@ -108,21 +126,38 @@
     [UIView transitionWithView:_directionView duration:0.4 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
         [_directionView setHidden:NO];
+        
     } completion:nil];
 }
 
 #pragma mark - search
 
 - (IBAction)search:(id)sender {
+    
 }
 
 #pragma mark - drawDestination Deleagte
 
-- (void)drawDestination {
+- (void)drawDestinationWithPlaceName:(NSString *)startPlaceName andDestinationPlaceName:(NSString *)destinationPlaceName {
 
+    [_mapView clear];
+    
     [UIView transitionWithView:_directionView duration:0.4 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
         [_directionView setHidden:YES];
+        [_googleMapManager drawDiectionWithPlaceName:startPlaceName andDestinationName:destinationPlaceName completion:^(DirectionDetailEntity* directionDetailEntity) {
+         
+            if (directionDetailEntity) {
+                
+                directionDetailEntity.polyline.strokeWidth = 3;
+                directionDetailEntity.polyline.strokeColor = [UIColor redColor];
+                directionDetailEntity.polyline.map = _mapView;
+                GMSCameraPosition* camera = [GMSCameraPosition cameraWithTarget:directionDetailEntity.startLocation.coordinate zoom:10];
+                [_mapView animateToCameraPosition:camera];
+                [_detailCustomView setupWithData:directionDetailEntity];
+                [_detailCustomView setHidden:NO];
+            }
+        }];
     } completion:nil];
 }
 
@@ -130,6 +165,8 @@
 
 - (void)getCurrentLocation:(CGPoint)currentPoint {
     
+    [_mapView clear];
+
     _currentLocation = [_googleMapManager getCurrentLocation];
     
     [_googleMapManager getAddressFromLocation:_currentLocation withCompletion:^(NSString* placeName, NSError* error) {
@@ -257,6 +294,13 @@
         
         [self.view layoutIfNeeded];
     }];
+}
+
+#pragma mark - closeDetailCustomView Delegate
+
+- (void)closeDetailCustomView {
+    
+    [_detailCustomView setHidden:YES];
 }
 
 @end

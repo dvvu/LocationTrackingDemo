@@ -16,9 +16,9 @@
 
 @implementation SearchResultEntity
 
-#pragma mark - initWithJSONData
+#pragma mark - initWithData
 
-- (instancetype)initWithJSONData:(NSDictionary *)jsonDictionary {
+- (instancetype)initWithData:(NSDictionary *)jsonDictionary {
     
     self = [super init];
    
@@ -38,43 +38,48 @@
 
         _placeName = _jsonDictionary[@"description"];
     }
+    
+    if (_jsonDictionary[@"place_id"] != [NSNull null]) {
+        
+        _placeID = _jsonDictionary[@"place_id"];
+    }
 }
+
 
 //#pragma mark - Properties
 //
 //- (NSString *)name {
-//    
+//
 //    NSString* name = [NSString new];
-//    
+//
 //    if ([_jsonDictionary[@"terms"] objectAtIndex:0][@"value"] != [NSNull null]) {
-//        
+//
 //        name = [_jsonDictionary[@"terms"] objectAtIndex:0][@"value"];
 //    }
-//    
+//
 //    return name;
 //}
 //
 //- (NSString *)description {
-//    
+//
 //    NSString *description = [NSString new];
-//    
+//
 //    if (_jsonDictionary[@"description"] != [NSNull null]) {
-//        
+//
 //        description = _jsonDictionary[@"description"];
 //    }
 //    return description;
 //}
 //
 //- (NSString *)placeID {
-//    
+//
 //    NSString *placeID = [NSString new];
-//    
+//
 //    if (_jsonDictionary[@"place_id"] != [NSNull null]) {
-//        
+//
 //        placeID = _jsonDictionary[@"place_id"];
 //    }
 //    return placeID;
 //}
-
 
 @end
