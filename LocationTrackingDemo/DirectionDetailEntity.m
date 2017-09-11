@@ -21,15 +21,15 @@
         NSDictionary* routeOverviewPolyline = [jsonDictionary objectForKey:@"overview_polyline"];
         NSDictionary* leg = [[jsonDictionary objectForKey:@"legs"] objectAtIndex:0];
         NSString* points = [routeOverviewPolyline objectForKey:@"points"];
-        GMSPath* path = [GMSPath pathFromEncodedPath:points];
-        
+      
+        _path = [GMSPath pathFromEncodedPath:points];
         _distance = [[leg objectForKey:@"distance"] objectForKey:@"text"];
         _duration = [[leg objectForKey:@"duration"] objectForKey:@"text"];
-        _startLocation = [[CLLocation alloc] initWithLatitude:[path coordinateAtIndex:0].latitude longitude:[path coordinateAtIndex:0].longitude];
-   
+        _startLocation = [[CLLocation alloc] initWithLatitude:[_path coordinateAtIndex:0].latitude longitude:[_path coordinateAtIndex:0].longitude];
+        _endLocation = [[CLLocation alloc] initWithLatitude:[_path coordinateAtIndex:_path.count-1].latitude longitude:[_path coordinateAtIndex:_path.count-1].longitude];
         dispatch_sync(dispatch_get_main_queue(), ^{
          
-             _polyline = [GMSPolyline polylineWithPath:path];
+             _polyline = [GMSPolyline polylineWithPath:_path];
          });
     }
     

@@ -152,10 +152,25 @@
                 directionDetailEntity.polyline.strokeWidth = 3;
                 directionDetailEntity.polyline.strokeColor = [UIColor redColor];
                 directionDetailEntity.polyline.map = _mapView;
-                GMSCameraPosition* camera = [GMSCameraPosition cameraWithTarget:directionDetailEntity.startLocation.coordinate zoom:10];
-                [_mapView animateToCameraPosition:camera];
+                
+                // update zoom and point
+                GMSCoordinateBounds* bounds = [[GMSCoordinateBounds alloc] initWithPath:directionDetailEntity.path];
+                GMSCameraUpdate* update = [GMSCameraUpdate fitBounds:bounds];
+                [_mapView moveCamera:update];
                 [_detailCustomView setupWithData:directionDetailEntity];
                 [_detailCustomView setHidden:NO];
+                
+                 //show marker
+                _myloactionMarker = [GMSMarker markerWithPosition:directionDetailEntity.startLocation.coordinate];
+                _myloactionMarker.title = @"I'm Here";
+                _myloactionMarker.map = _mapView;
+                [_mapView setSelectedMarker:_myloactionMarker];
+                
+                GMSMarker* endnMarker = [GMSMarker markerWithPosition:directionDetailEntity.endLocation.coordinate];
+                endnMarker.title = @"end Here";
+                endnMarker.appearAnimation = YES;
+                endnMarker.map = _mapView;
+                [_mapView setSelectedMarker:endnMarker];
             }
         }];
     } completion:nil];

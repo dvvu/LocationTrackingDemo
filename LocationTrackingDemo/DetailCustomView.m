@@ -52,6 +52,7 @@
     [self setBackgroundColor:[UIColor colorWithRed:160/255.f green:203/255.f blue:252/255.f alpha:0.8f]];
     
     _exitButton = [[UIButton alloc] init];
+    [_exitButton setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     [_exitButton addTarget:self action:@selector(closeDetailView:) forControlEvents:UIControlEventTouchUpInside];
     [_exitButton setImage:[UIImage imageNamed:@"ic_close"] forState:UIControlStateNormal];
     [self addSubview:_exitButton];
@@ -76,14 +77,14 @@
     
     [_exitButton mas_makeConstraints:^(MASConstraintMaker* make) {
         
-        make.top.equalTo(self).offset(5);
-        make.left.equalTo(self).offset(8);
-        make.width.and.height.mas_offset(10);
+        make.top.equalTo(self).offset(0);
+        make.left.equalTo(self).offset(0);
+        make.width.and.height.mas_offset(20);
     }];
     
     [_distanceImageView mas_makeConstraints:^(MASConstraintMaker* make) {
         
-        make.top.equalTo(_exitButton.mas_bottom).offset(5);
+        make.top.equalTo(_exitButton.mas_bottom).offset(0);
         make.left.equalTo(self).offset(8);
         make.width.and.height.mas_offset(20);
     }];
@@ -111,6 +112,8 @@
         make.height.mas_offset(20);
     }];
 }
+
+#pragma mark - closeDetailView
 
 - (IBAction)closeDetailView:(id)sender {
     

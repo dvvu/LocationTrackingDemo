@@ -13,9 +13,11 @@
 @interface DirectionDetailEntity : NSObject
 
 @property (nonatomic) CLLocation* startLocation;
+@property (nonatomic) CLLocation* endLocation;
 @property (nonatomic) GMSPolyline* polyline;
 @property (nonatomic) NSString* distance;
 @property (nonatomic) NSString* duration;
+@property (nonatomic) GMSPath* path;
 
 #pragma mark - initWithData
 - (instancetype)initWithData:(NSDictionary *)jsonDictionary;
