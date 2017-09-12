@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ThreadSafeForMutableArray : NSObject
+@interface ThreadSafeForMutableArray : NSObject //NSFastEnumeration
 
 #pragma mark - filteredArrayUsingPredicate
 - (NSArray *)filteredArrayUsingPredicate:(NSPredicate *)predicate;
@@ -30,5 +30,8 @@
 
 #pragma mark - init
 - (instancetype)init;
+
+#pragma mark - enumerateObjectsUsingBlock
+- (void)enumerateObjectsUsingBlock:(void (^)(id object, NSUInteger idx, BOOL *stop))block;
 
 @end

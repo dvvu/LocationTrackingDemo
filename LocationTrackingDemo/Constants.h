@@ -18,11 +18,22 @@
 
 #define AUTOCOMPLETE_ADDRESS_LOCATION_URL "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=establishment|geocode&radius=500&language=en&key=%@"
 
-#define SERVER_KEY "AIzaSyA8K9lEs2E6T6qBh5UAVRLWJJnGr9es0Rw"
+#define NAME_PLACEID_URL "https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=%@"
 
+#define DIRECTION_URL "https://maps.googleapis.com/maps/api/directions/json?&origin=%@&destination=%@&mode=driving"
+
+#define NEARBY_SEARCH_URL "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=%@&radius=%@&type=%@&key=%@"
+
+#define SERVER_KEY "AIzaSyA8K9lEs2E6T6qBh5UAVRLWJJnGr9es0Rw"
 
 typedef NS_ENUM(NSUInteger, SearchResultTableType) {
     
     ResultTableTypeStart,
     ResultTableTypeDestination,
+};
+
+typedef NS_ENUM(NSUInteger, CompoboxType) {
+    
+    CompoboxTypeFindPlace,
+    CompoboxTypeRadius,
 };

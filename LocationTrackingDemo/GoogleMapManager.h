@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ThreadSafeForMutableArray.h"
 
 @interface GoogleMapManager : NSObject
 
@@ -15,6 +16,10 @@
 
 #pragma mark - drawDiectionWithPlaceName
 - (void)drawDiectionWithPlaceName:(NSString *)startString andDestinationName:(NSString *)destinationString completion:(void (^)(DirectionDetailEntity *))completion;
+
+#pragma mark - searchAtLocation
+
+- (void)searchAtLocation:(CLLocation *)currentLocation withPlaceName:(NSString *)placeaName andRadius:(NSString *)radius completion:(void (^)(ThreadSafeForMutableArray *))completion;
 
 #pragma mark - getAddressFromLocation
 - (void)getAddressFromLocation:(CLLocation *)loaction withCompletion:(void (^)(NSString* placeName, NSError *error))completion;

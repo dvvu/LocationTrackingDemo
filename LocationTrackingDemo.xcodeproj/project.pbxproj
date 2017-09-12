@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC544426B6E01290AC51E6EB /* Pods_LocationTrackingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645E52B5FDE7F57396A6045B /* Pods_LocationTrackingDemo.framework */; };
+		EA331B591F6640A800A9415B /* SearchPlacesCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA331B581F6640A800A9415B /* SearchPlacesCustomView.m */; };
 		EA6923171F629F1A008B9FF9 /* DirectionDetailEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6923161F629F1A008B9FF9 /* DirectionDetailEntity.m */; };
 		EA69231A1F62A5B8008B9FF9 /* DetailCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6923191F62A5B8008B9FF9 /* DetailCustomView.m */; };
 		EA72BA681F5F967500A74EEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72BA671F5F967500A74EEF /* main.m */; };
@@ -26,6 +27,9 @@
 		EA7D93801F6155FC0064C95E /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D937F1F6155FC0064C95E /* SearchResultTableViewCell.m */; };
 		EA7D93841F615FFB0064C95E /* SearchResultEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93831F615FFB0064C95E /* SearchResultEntity.m */; };
 		EA7D93871F6169B00064C95E /* ThreadSafeForMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7D93861F6169B00064C95E /* ThreadSafeForMutableArray.m */; };
+		EADA1B981F666C10005A4069 /* CompoboxCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EADA1B971F666C10005A4069 /* CompoboxCustomView.m */; };
+		EADA1B9C1F6678BA005A4069 /* CompoboxTableViewSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EADA1B9B1F6678BA005A4069 /* CompoboxTableViewSource.m */; };
+		EADA1B9F1F66A829005A4069 /* SearchNearbyEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EADA1B9E1F66A829005A4069 /* SearchNearbyEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		43F6D66067A82774E6C4DA5D /* Pods-LocationTrackingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		645E52B5FDE7F57396A6045B /* Pods_LocationTrackingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationTrackingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D50E617F41BCDDF95A11D92 /* Pods-LocationTrackingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTrackingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTrackingDemo/Pods-LocationTrackingDemo.release.xcconfig"; sourceTree = "<group>"; };
+		EA331B571F6640A800A9415B /* SearchPlacesCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPlacesCustomView.h; sourceTree = "<group>"; };
+		EA331B581F6640A800A9415B /* SearchPlacesCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPlacesCustomView.m; sourceTree = "<group>"; };
 		EA6923151F629F1A008B9FF9 /* DirectionDetailEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionDetailEntity.h; sourceTree = "<group>"; };
 		EA6923161F629F1A008B9FF9 /* DirectionDetailEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionDetailEntity.m; sourceTree = "<group>"; };
 		EA6923181F62A5B8008B9FF9 /* DetailCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCustomView.h; sourceTree = "<group>"; };
@@ -89,6 +95,13 @@
 		EA7D93851F6169B00064C95E /* ThreadSafeForMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeForMutableArray.h; sourceTree = "<group>"; };
 		EA7D93861F6169B00064C95E /* ThreadSafeForMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeForMutableArray.m; sourceTree = "<group>"; };
 		EA7D93891F616CB60064C95E /* SearchResultsTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewDelegate.h; sourceTree = "<group>"; };
+		EADA1B961F666C10005A4069 /* CompoboxCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompoboxCustomView.h; sourceTree = "<group>"; };
+		EADA1B971F666C10005A4069 /* CompoboxCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompoboxCustomView.m; sourceTree = "<group>"; };
+		EADA1B991F667027005A4069 /* CompoboxCustomViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompoboxCustomViewDelegate.h; sourceTree = "<group>"; };
+		EADA1B9A1F6678BA005A4069 /* CompoboxTableViewSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompoboxTableViewSource.h; sourceTree = "<group>"; };
+		EADA1B9B1F6678BA005A4069 /* CompoboxTableViewSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompoboxTableViewSource.m; sourceTree = "<group>"; };
+		EADA1B9D1F66A829005A4069 /* SearchNearbyEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearbyEntity.h; sourceTree = "<group>"; };
+		EADA1B9E1F66A829005A4069 /* SearchNearbyEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearbyEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,9 +176,9 @@
 				EA7D93881F616C740064C95E /* ThreadSafe */,
 				EA7D93811F615FE30064C95E /* SearchResultEntity */,
 				EA7D937D1F6155D40064C95E /* SearchResultTableViewCell */,
-				EA7D93791F61534E0064C95E /* SearchResultsTableViewSource */,
+				EA7D93791F61534E0064C95E /* CustomTableViewSource */,
 				EA7D93721F60F7650064C95E /* GoogleMapManager */,
-				EA7D93711F60F7430064C95E /* DirectionCustomView */,
+				EA7D93711F60F7430064C95E /* CustomView */,
 				EA72BA6C1F5F967500A74EEF /* ViewController.h */,
 				EA72BA6D1F5F967500A74EEF /* ViewController.m */,
 				EA72BA661F5F967500A74EEF /* Supporting Files */,
@@ -213,22 +226,27 @@
 			isa = PBXGroup;
 			children = (
 				EA72BA9C1F5FE4E600A74EEF /* Constants.h */,
-				EA72BA9D1F5FE51F00A74EEF /* DirectionCustomViewDelegate.h */,
 				EA7D93891F616CB60064C95E /* SearchResultsTableViewDelegate.h */,
+				EA72BA9D1F5FE51F00A74EEF /* DirectionCustomViewDelegate.h */,
 				EA69231B1F62B2FD008B9FF9 /* DetailCustomViewDelegate.h */,
+				EADA1B991F667027005A4069 /* CompoboxCustomViewDelegate.h */,
 			);
 			name = "delegate&constants";
 			sourceTree = "<group>";
 		};
-		EA7D93711F60F7430064C95E /* DirectionCustomView */ = {
+		EA7D93711F60F7430064C95E /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
 				EA72BA991F5FD56F00A74EEF /* DirectionCustomView.h */,
 				EA72BA9A1F5FD56F00A74EEF /* DirectionCustomView.m */,
 				EA6923181F62A5B8008B9FF9 /* DetailCustomView.h */,
 				EA6923191F62A5B8008B9FF9 /* DetailCustomView.m */,
+				EA331B571F6640A800A9415B /* SearchPlacesCustomView.h */,
+				EA331B581F6640A800A9415B /* SearchPlacesCustomView.m */,
+				EADA1B961F666C10005A4069 /* CompoboxCustomView.h */,
+				EADA1B971F666C10005A4069 /* CompoboxCustomView.m */,
 			);
-			name = DirectionCustomView;
+			name = CustomView;
 			sourceTree = "<group>";
 		};
 		EA7D93721F60F7650064C95E /* GoogleMapManager */ = {
@@ -240,13 +258,15 @@
 			name = GoogleMapManager;
 			sourceTree = "<group>";
 		};
-		EA7D93791F61534E0064C95E /* SearchResultsTableViewSource */ = {
+		EA7D93791F61534E0064C95E /* CustomTableViewSource */ = {
 			isa = PBXGroup;
 			children = (
 				EA7D937A1F61537D0064C95E /* SearchResultsTableViewSource.h */,
 				EA7D937B1F61537D0064C95E /* SearchResultsTableViewSource.m */,
+				EADA1B9A1F6678BA005A4069 /* CompoboxTableViewSource.h */,
+				EADA1B9B1F6678BA005A4069 /* CompoboxTableViewSource.m */,
 			);
-			name = SearchResultsTableViewSource;
+			name = CustomTableViewSource;
 			sourceTree = "<group>";
 		};
 		EA7D937D1F6155D40064C95E /* SearchResultTableViewCell */ = {
@@ -265,6 +285,8 @@
 				EA7D93831F615FFB0064C95E /* SearchResultEntity.m */,
 				EA6923151F629F1A008B9FF9 /* DirectionDetailEntity.h */,
 				EA6923161F629F1A008B9FF9 /* DirectionDetailEntity.m */,
+				EADA1B9D1F66A829005A4069 /* SearchNearbyEntity.h */,
+				EADA1B9E1F66A829005A4069 /* SearchNearbyEntity.m */,
 			);
 			name = SearchResultEntity;
 			sourceTree = "<group>";
@@ -464,10 +486,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA72BA6E1F5F967500A74EEF /* ViewController.m in Sources */,
+				EA331B591F6640A800A9415B /* SearchPlacesCustomView.m in Sources */,
 				EA69231A1F62A5B8008B9FF9 /* DetailCustomView.m in Sources */,
 				EA72BA6B1F5F967500A74EEF /* AppDelegate.m in Sources */,
 				EA72BAA01F5FFA3100A74EEF /* AnimationViewController.m in Sources */,
 				EA6923171F629F1A008B9FF9 /* DirectionDetailEntity.m in Sources */,
+				EADA1B9F1F66A829005A4069 /* SearchNearbyEntity.m in Sources */,
+				EADA1B981F666C10005A4069 /* CompoboxCustomView.m in Sources */,
 				EA7D93841F615FFB0064C95E /* SearchResultEntity.m in Sources */,
 				EA7D93781F60FEF80064C95E /* SupportManager.m in Sources */,
 				EA7D93751F60F7840064C95E /* GoogleMapManager.m in Sources */,
@@ -476,6 +501,7 @@
 				EA7D93801F6155FC0064C95E /* SearchResultTableViewCell.m in Sources */,
 				EA72BA681F5F967500A74EEF /* main.m in Sources */,
 				EA72BA9B1F5FD56F00A74EEF /* DirectionCustomView.m in Sources */,
+				EADA1B9C1F6678BA005A4069 /* CompoboxTableViewSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

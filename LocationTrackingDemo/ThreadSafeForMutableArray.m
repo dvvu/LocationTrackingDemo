@@ -113,6 +113,7 @@
         
         count = [_threadSafeArray count];
     });
+    
     return count;
 }
 
@@ -127,6 +128,18 @@
         result = [_threadSafeArray filteredArrayUsingPredicate:predicate];
     });
     return result;
+}
+
+#pragma mark - enumerateObjectsUsingBlock
+
+- (void)enumerateObjectsUsingBlock:(void (^)(id object, NSUInteger idx, BOOL* stop))block {
+    
+    NSArray* array = [_threadSafeArray copy];
+    
+    dispatch_sync(_threadSafeForArrayQueue, ^{
+        
+        [array enumerateObjectsUsingBlock:block];
+    });
 }
 
 @end

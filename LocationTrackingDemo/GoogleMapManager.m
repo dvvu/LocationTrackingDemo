@@ -10,14 +10,17 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "DirectionDetailEntity.h"
 #import "GoogleMapManager.h"
+#import "SearchNearbyEntity.h"
 #import "Constants.h"
 
 @interface GoogleMapManager () <CLLocationManagerDelegate>
 
+@property (nonatomic) ThreadSafeForMutableArray* searchNearbyResults;
 @property (nonatomic) dispatch_queue_t drawDirectionPolylineQuue;
 @property (nonatomic) dispatch_queue_t autoCompleteSearchQuue;
 @property (nonatomic) dispatch_queue_t currentLocationQuue;
 @property (nonatomic) CLLocationManager* locationManager;
+@property (nonatomic) dispatch_queue_t nearbySearchQuue;
 @property (nonatomic) CLLocation* currentLocation;
 @property (nonatomic) GMSMapView* mapView;
 
@@ -34,16 +37,17 @@
     if (self) {
     
         _mapView = mapView;
-        
         _locationManager = locationManager;
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         _locationManager.distanceFilter = 500;
         [_locationManager requestAlwaysAuthorization];
         [_locationManager startUpdatingLocation];
+        
         _currentLocationQuue = dispatch_queue_create("CURRENT_LOCATION_QUEUE", DISPATCH_QUEUE_SERIAL);
         _autoCompleteSearchQuue = dispatch_queue_create("AUTOCOMPLETE_SEARCH_QUEUE", DISPATCH_QUEUE_SERIAL);
         _drawDirectionPolylineQuue = dispatch_queue_create("DIRECTION_QUEUE", DISPATCH_QUEUE_SERIAL);
+        _nearbySearchQuue = dispatch_queue_create("NEARBY_SEARH_QUEUE", DISPATCH_QUEUE_SERIAL);
     }
     
     return self;
@@ -55,25 +59,35 @@
     
     dispatch_async(_currentLocationQuue, ^ {
         
-        NSString* searchURL = [NSString stringWithFormat:@ADDRESS_LOCATION_URL,loaction.coordinate.latitude, loaction.coordinate.longitude];
+        NSString* urlString = [NSString stringWithFormat:@ADDRESS_LOCATION_URL,loaction.coordinate.latitude, loaction.coordinate.longitude];
         
-        NSError* error;
-        NSString* locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:searchURL] encoding:NSUTF8StringEncoding error:&error];
+        NSURL* url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
         
-        if (error) {
+        NSURLSession* session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        NSURLSessionDataTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
             
-            dispatch_async(dispatch_get_main_queue(), ^ {
+            if (!data) {
                 
-                completion(@"", error);
-            });
-        } else {
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    
+                    completion(nil, error);
+                });
+                return;
+            }
             
-            NSData* data = [locationString dataUsingEncoding:NSUTF8StringEncoding];
-            id jSONresult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];;
             
-            if (jSONresult) {
-    
-                id result = [[jSONresult valueForKey:@"results"] objectAtIndex:0];
+            if (error || [jSONresult[@"status"] isEqualToString:@"NOT_FOUND"] || [jSONresult[@"status"] isEqualToString:@"REQUEST_DENIED"]) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    
+                    completion(nil, error);
+                });
+                return;
+            } else {
+                
+                NSArray* result = [[jSONresult valueForKey:@"results"] objectAtIndex:0];
                 
                 if (result) {
                     
@@ -85,7 +99,9 @@
                     });
                 }
             }
-        }
+        }];
+        
+        [task resume];
     });
 }
 
@@ -184,12 +200,10 @@
     
     dispatch_async(_currentLocationQuue, ^ {
         
+        NSString* newStartString = [startString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString* newDestinationString = [destinationString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        NSString* startString1 = [startString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString* destinationString1 = [destinationString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        NSString* directionsAPI = @"https://maps.googleapis.com/maps/api/directions/json?";
-        NSString* directionsUrlString = [NSString stringWithFormat:@"%@&origin=%@&destination=%@&mode=driving", directionsAPI, startString1, destinationString1];
+        NSString* directionsUrlString = [NSString stringWithFormat:@DIRECTION_URL, newStartString, newDestinationString];
         NSURL* directionsUrl = [NSURL URLWithString:directionsUrlString];
         
         NSURLSessionDataTask* task = [[NSURLSession sharedSession] dataTaskWithURL:directionsUrl completionHandler: ^(NSData* data, NSURLResponse* response, NSError* error) {
@@ -220,6 +234,68 @@
                     
                     completion(directionDetailEntity);
             });
+        }];
+        
+        [task resume];
+    });
+}
+
+#pragma mark - searchAtLocation
+
+- (void)searchAtLocation:(CLLocation *)currentLocation withPlaceName:(NSString *)placeaName andRadius:(NSString *)radius completion:(void (^)(ThreadSafeForMutableArray *))completion {
+    
+    dispatch_async(_nearbySearchQuue, ^ {
+        
+        NSString* locationString = [NSString stringWithFormat:@"%f,%f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
+        NSString* directionsUrlString = [NSString stringWithFormat:@NEARBY_SEARCH_URL, locationString,radius,placeaName,@SERVER_KEY];
+        NSURL* directionsUrl = [NSURL URLWithString:directionsUrlString];
+        
+        NSURLSessionDataTask* task = [[NSURLSession sharedSession] dataTaskWithURL:directionsUrl completionHandler: ^(NSData* data, NSURLResponse* response, NSError* error) {
+            
+            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            
+            id addressIPError = [jSONresult valueForKey:@"error_message"];
+           
+            if (addressIPError) {
+                
+                NSLog(@"Error : %@", addressIPError);
+            }
+            
+            if (error || !jSONresult) {
+                
+                if (completion) {
+                    
+                    completion(nil);
+                }
+                return;
+            }
+            
+            // get location and placeID
+            id results = [jSONresult valueForKey:@"results"];
+            
+            if (results) {
+                
+                _searchNearbyResults = [[ThreadSafeForMutableArray alloc] init];
+                
+                for (NSDictionary* result in results) {
+                    
+                    SearchNearbyEntity* searchNearbyEntity = [[SearchNearbyEntity alloc] initWithData:result];
+                    [_searchNearbyResults addObject:searchNearbyEntity];
+                }
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
+                    if(completion)
+                        
+                        completion(_searchNearbyResults);
+                });
+            } else {
+                
+                if (completion) {
+                    
+                    completion(nil);
+                }
+            }
         }];
         
         [task resume];
@@ -275,5 +351,6 @@
  
     return array;
 }
+
 
 @end
