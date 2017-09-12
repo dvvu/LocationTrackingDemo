@@ -76,7 +76,7 @@
                 return;
             }
             
-            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];;
+            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];;
             
             if (error || [jSONresult[@"status"] isEqualToString:@"NOT_FOUND"] || [jSONresult[@"status"] isEqualToString:@"REQUEST_DENIED"]) {
                 
@@ -86,17 +86,25 @@
                 });
                 return;
             } else {
-                
-                NSArray* result = [[jSONresult valueForKey:@"results"] objectAtIndex:0];
-                
-                if (result) {
+              
+                NSArray* results = [jSONresult valueForKey:@"results"];
+              
+                if (results.count > 0) {
                     
-                    NSString* placeName = [result valueForKey:@"formatted_address"];
+                    NSArray* result = [results objectAtIndex:0];
                     
-                    dispatch_async(dispatch_get_main_queue(), ^ {
+                    if (result) {
                         
-                        completion(placeName, nil);
-                    });
+                        NSString* placeName = [result valueForKey:@"formatted_address"];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^ {
+                            
+                            completion(placeName, nil);
+                        });
+                    }
+                } else {
+                    
+                    return;
                 }
             }
         }];
@@ -246,13 +254,23 @@
     
     dispatch_async(_nearbySearchQuue, ^ {
         
+        NSString* searchPlace = [placeaName stringByReplacingOccurrencesOfString:@" " withString:@"_"].lowercaseString;
         NSString* locationString = [NSString stringWithFormat:@"%f,%f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
-        NSString* directionsUrlString = [NSString stringWithFormat:@NEARBY_SEARCH_URL, locationString,radius,placeaName,@SERVER_KEY];
+        NSString* directionsUrlString = [NSString stringWithFormat:@NEARBY_SEARCH_URL, locationString,radius,searchPlace,@SERVER_KEY];
         NSURL* directionsUrl = [NSURL URLWithString:directionsUrlString];
         
         NSURLSessionDataTask* task = [[NSURLSession sharedSession] dataTaskWithURL:directionsUrl completionHandler: ^(NSData* data, NSURLResponse* response, NSError* error) {
             
-            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSDictionary* jSONresult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            
+            if (error || [jSONresult[@"status"] isEqualToString:@"NOT_FOUND"] || [jSONresult[@"status"] isEqualToString:@"REQUEST_DENIED"]) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    
+                    completion(nil);
+                });
+                return;
+            }
             
             id addressIPError = [jSONresult valueForKey:@"error_message"];
            
@@ -301,56 +319,5 @@
         [task resume];
     });
 }
-
-#pragma mark - decodePolyLine
-
-- (NSMutableArray *)decodePolyLine:(NSString *)encodedStr {
-    
-    NSMutableString* encoded = [[NSMutableString alloc] initWithCapacity:[encodedStr length]];
-    [encoded appendString:encodedStr];
-    [encoded replaceOccurrencesOfString:@"\\\\" withString:@"\\" options:NSLiteralSearch range:NSMakeRange(0,[encoded length])];
-   
-    NSInteger index = 0;
-    NSInteger lat = 0;
-    NSInteger lng = 0;
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    
-    while (index < [encoded length]) {
-        
-        NSInteger ascCharacter;
-        NSInteger bitsShift = 0;
-        NSInteger result = 0;
-        
-        do {
-            ascCharacter = [encoded characterAtIndex:index++] - 63; // ascii
-            result |= (ascCharacter & 0x1f) << bitsShift; //or and *2^shift
-            bitsShift += 5;
-        } while (ascCharacter >= 0x20); // 32 -> space
-        
-        // old get < 0 else
-        NSInteger dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
-        lat += dlat;
-        bitsShift = 0;
-        result = 0;
-     
-        do {
-            ascCharacter = [encoded characterAtIndex:index++] - 63;
-            result |= (ascCharacter & 0x1f) << bitsShift;
-            bitsShift += 5;
-        } while (ascCharacter >= 0x20);
-        
-        NSInteger dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
-        lng += dlng;
-        
-        NSNumber* latitude = [[NSNumber alloc] initWithFloat:lat * 1e-5];
-        NSNumber* longitude = [[NSNumber alloc] initWithFloat:lng * 1e-5];
-        
-        CLLocation* location = [[CLLocation alloc] initWithLatitude: [latitude floatValue] longitude:[longitude floatValue]];
-        [array addObject:location];
-    }
- 
-    return array;
-}
-
 
 @end

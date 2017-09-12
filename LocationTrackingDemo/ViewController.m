@@ -369,19 +369,26 @@
 
 - (void)searchWithPlace:(NSString *)placeName andRadius:(NSString *)radius {
     
+    // clear map
+    [_mapView clear];
+    
     if (!_currentLocation) {
         
         _currentLocation = [_googleMapManager getCurrentLocation];
     }
+    
+    // hide _searchPlacesCustomView
+    [_searchPlacesCustomView setHidden:YES];
     
     if (!_myloactionMarker) {
         
         _myloactionMarker = [GMSMarker markerWithPosition:_currentLocation.coordinate];
         _myloactionMarker.title = @"I'm Here";
         _myloactionMarker.icon = [SupportManager resizeImage:[UIImage imageNamed:@"ic_blueUser"] scaledToSize:CGSizeMake(25.0f, 25.0f)];
-        _myloactionMarker.map = _mapView;
         [_mapView setSelectedMarker:_myloactionMarker];
     }
+    
+    _myloactionMarker.map = _mapView;
     
     GMSCameraPosition* camera = [GMSCameraPosition cameraWithLatitude:_currentLocation.coordinate.latitude longitude:_currentLocation.coordinate.longitude zoom:15];
     [_mapView animateToCameraPosition:camera];
@@ -436,8 +443,8 @@
                 _currentPolyline = directionDetailEntity.polyline;
                 // update zoom and point
                 GMSCoordinateBounds* bounds = [[GMSCoordinateBounds alloc] initWithPath:directionDetailEntity.path];
-                GMSCameraUpdate* update = [GMSCameraUpdate fitBounds:bounds];
-                [_mapView moveCamera:update];
+                GMSCameraUpdate* updateCamera = [GMSCameraUpdate fitBounds:bounds];
+                [_mapView moveCamera:updateCamera];
                 [_detailCustomView setupWithData:directionDetailEntity];
                 [_detailCustomView setHidden:NO];
             }

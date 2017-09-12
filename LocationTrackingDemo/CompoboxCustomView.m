@@ -50,10 +50,10 @@
     
     if (_type == CompoboxTypeRadius) {
         
-        _valueLabel.text =@"10 Km";
+        _valueLabel.text =@"1 Km";
     } else {
         
-        _valueLabel.text =@"Coffee";
+        _valueLabel.text =@"Cafe";
     }
     
     [_valueLabel setTextColor:[UIColor darkGrayColor]];

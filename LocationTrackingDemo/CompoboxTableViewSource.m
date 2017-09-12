@@ -29,7 +29,7 @@
         _tableView.dataSource = self;
         _dataArray = [[NSArray alloc] init];
         [_tableView setBackgroundColor:[UIColor clearColor]];
-        _tableView.contentInset = UIEdgeInsetsMake(0, -8, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
         [self setupDataWithType:type];
     }
     
@@ -43,11 +43,28 @@
     _type = type;
     
     if (type == CompoboxTypeFindPlace) {
+        
+        /*
+         ATM
+         Bank
+         Bus station
+         Cafe
+         Fire Station
+         Gas station
+         Hospital
+         Hotel
+         Market
+         Museum
+         Police
+         Post Office
+         School
+         Restaurant
+         */
        
-       _dataArray = @[@"Coffee",@"ATM",@"Restaurant",@"Hotel"];
+       _dataArray = @[@"ATM",@"Bank",@"Bus station",@"Cafe",@"Fire Station",@"Gas station",@"Hospital",@"Hotel",@"Market",@"Museum",@"Police",@"Post Office",@"School",@"Restaurant"];
     } else {
         
-      _dataArray = @[@"1 Km",@"2 Km",@"5 Km",@"10 Km",@"50 Km"];
+      _dataArray = @[@"1 Km",@"2 Km",@"5 Km",@"10 Km",@"20 Km",@"50 Km"];
     }
 }
 
