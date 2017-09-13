@@ -12,11 +12,10 @@
 
 @interface DetailCustomView ()
 
-@property (nonatomic) UIImageView* distanceImageView;
-@property (nonatomic) UIImageView* durationImageView;
+@property (nonatomic) UIImageView* detailImageView;
 @property (nonatomic) UIButton* exitButton;
-@property (nonatomic) UILabel* distance;
-@property (nonatomic) UILabel* duration;
+@property (nonatomic) UILabel* distanceLabel;
+@property (nonatomic) UILabel* durationLabel;
 
 @end
 
@@ -40,8 +39,8 @@
 
 - (void)setupWithData:(DirectionDetailEntity *)directionDetailEntity {
 
-    _distance.text = directionDetailEntity.distance;
-    _duration.text = directionDetailEntity.duration;
+    _distanceLabel.text = [NSString stringWithFormat:@"Distance: %0.1f Km",directionDetailEntity.distance.floatValue/1000];
+    _durationLabel.text = [NSString stringWithFormat:@"Duration: %@",directionDetailEntity.duration];
 }
 
 #pragma mark - setupLayoutSubview
@@ -49,7 +48,7 @@
 - (void)setupLayoutSubview {
 
     CGFloat scale = FONTSIZE_SCALE;
-    [self setBackgroundColor:[UIColor colorWithRed:160/255.f green:203/255.f blue:252/255.f alpha:0.8f]];
+    [self setBackgroundColor:[UIColor colorWithRed:48/255.f green:22/255.f blue:49/255.f alpha:0.8f]];
     
     _exitButton = [[UIButton alloc] init];
     [_exitButton setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
@@ -57,23 +56,19 @@
     [_exitButton setImage:[UIImage imageNamed:@"ic_close"] forState:UIControlStateNormal];
     [self addSubview:_exitButton];
     
-    _distance = [[UILabel alloc] init];
-    [_distance setTextColor:[UIColor whiteColor]];
-    [_distance setFont:[UIFont boldSystemFontOfSize:10 * scale]];
-    [self addSubview:_distance];
+    _distanceLabel = [[UILabel alloc] init];
+    [_distanceLabel setTextColor:[UIColor whiteColor]];
+    [_distanceLabel setFont:[UIFont boldSystemFontOfSize:10 * scale]];
+    [self addSubview:_distanceLabel];
     
-    _duration = [[UILabel alloc] init];
-    [_duration setTextColor:[UIColor whiteColor]];
-    [_duration setFont:[UIFont boldSystemFontOfSize:10 * scale]];
-    [self addSubview:_duration];
+    _durationLabel = [[UILabel alloc] init];
+    [_durationLabel setTextColor:[UIColor whiteColor]];
+    [_durationLabel setFont:[UIFont boldSystemFontOfSize:10 * scale]];
+    [self addSubview:_durationLabel];
     
-    _distanceImageView = [[UIImageView alloc] init];
-    _distanceImageView.image = [UIImage imageNamed:@"ic_distance"];
-    [self addSubview:_distanceImageView];
-    
-    _durationImageView = [[UIImageView alloc] init];
-    _durationImageView.image = [UIImage imageNamed:@"ic_duration"];
-    [self addSubview:_durationImageView];
+    _detailImageView = [[UIImageView alloc] init];
+    _detailImageView.image = [UIImage imageNamed:@"ic_whiteDetail"];
+    [self addSubview:_detailImageView];
     
     [_exitButton mas_makeConstraints:^(MASConstraintMaker* make) {
         
@@ -82,32 +77,25 @@
         make.width.and.height.mas_offset(20);
     }];
     
-    [_distanceImageView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_detailImageView mas_makeConstraints:^(MASConstraintMaker* make) {
         
         make.top.equalTo(_exitButton.mas_bottom).offset(0);
         make.left.equalTo(self).offset(8);
-        make.width.and.height.mas_offset(20);
+        make.width.and.height.mas_offset(40);
     }];
     
-    [_durationImageView mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_distanceLabel mas_makeConstraints:^(MASConstraintMaker* make) {
         
-        make.top.equalTo(_distanceImageView.mas_bottom).offset(5);
-        make.left.equalTo(self).offset(8);
-        make.width.and.height.mas_offset(20);
-    }];
-    
-    [_distance mas_makeConstraints:^(MASConstraintMaker* make) {
-        
-        make.top.equalTo(_exitButton.mas_bottom).offset(5);
-        make.left.equalTo(_distanceImageView.mas_right).offset(8);
+        make.top.equalTo(_exitButton.mas_bottom).offset(0);
+        make.left.equalTo(_detailImageView.mas_right).offset(8);
         make.right.equalTo(self).offset(-8);
         make.height.mas_offset(20);
     }];
     
-    [_duration mas_makeConstraints:^(MASConstraintMaker* make) {
+    [_durationLabel mas_makeConstraints:^(MASConstraintMaker* make) {
         
-        make.top.equalTo(_distanceImageView.mas_bottom).offset(5);
-        make.left.equalTo(_distanceImageView.mas_right).offset(8);
+        make.top.equalTo(_distanceLabel.mas_bottom).offset(5);
+        make.left.equalTo(_detailImageView.mas_right).offset(8);
         make.right.equalTo(self).offset(-8);
         make.height.mas_offset(20);
     }];

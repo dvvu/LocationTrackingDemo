@@ -47,19 +47,19 @@
     [self setBackgroundColor:[UIColor colorWithRed:48/255.f green:22/255.f blue:49/255.f alpha:0.8f]];
      
     _startLabel = [[UILabel alloc] init];
-    [_startLabel setTextColor:[UIColor whiteColor]];
-    [_startLabel setFont:[UIFont boldSystemFontOfSize:12 * scale]];
+    [_startLabel setTextColor:[UIColor greenColor]];
+    [_startLabel setFont:[UIFont boldSystemFontOfSize:11 * scale]];
     _startLabel.text = @"Enter start point";
     [self addSubview:_startLabel];
     
     _destinationLabel = [[UILabel alloc] init];
-    [_destinationLabel setTextColor:[UIColor whiteColor]];
-    [_destinationLabel setFont:[UIFont boldSystemFontOfSize:12 * scale]];
+    [_destinationLabel setTextColor:[UIColor greenColor]];
+    [_destinationLabel setFont:[UIFont boldSystemFontOfSize:11 * scale]];
     _destinationLabel.text = @"Enter destination point";
     [self addSubview:_destinationLabel];
     
     _startTextField = [[UITextField alloc] init];
-    _startTextField.placeholder = @"start point";
+    _startTextField.placeholder = @"start place";
     [_startTextField setTextAlignment:NSTextAlignmentCenter];
     [_startTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [_startTextField addTarget:self action:@selector(startTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -72,19 +72,19 @@
     [self addSubview:_startSearchResultsTableView];
     
     _destinationTextField = [[UITextField alloc] init];
-    _destinationTextField.placeholder = @"destination point";
+    _destinationTextField.placeholder = @"destination place";
     [_destinationTextField setTextAlignment:NSTextAlignmentCenter];
     [_destinationTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [_destinationTextField addTarget:self action:@selector(destinationTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self addSubview:_destinationTextField];
 
     _drawDestinationButton = [[UIButton alloc] init];
-    [_drawDestinationButton setImage:[UIImage imageNamed:@"ic_direction"] forState:UIControlStateNormal];
+    [_drawDestinationButton setImage:[UIImage imageNamed:@"ic_whiteDirection"] forState:UIControlStateNormal];
     [_drawDestinationButton addTarget:self action:@selector(drawDestination:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_drawDestinationButton];
     
     _currentlocationButton = [[UIButton alloc] init];
-    [_currentlocationButton setImage:[UIImage imageNamed:@"ic_location"] forState:UIControlStateNormal];
+    [_currentlocationButton setImage:[UIImage imageNamed:@"ic_whiteLocation"] forState:UIControlStateNormal];
     [_currentlocationButton addTarget:self action:@selector(getCurrentLocation:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_currentlocationButton];
     

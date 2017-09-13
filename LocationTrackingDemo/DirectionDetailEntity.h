@@ -15,9 +15,9 @@
 @property (nonatomic) CLLocation* startLocation;
 @property (nonatomic) CLLocation* endLocation;
 @property (nonatomic) GMSPolyline* polyline;
-@property (nonatomic) NSString* distance;
+@property (nonatomic) NSNumber* distance;
 @property (nonatomic) NSString* duration;
-@property (nonatomic) GMSPath* path;
+@property (nonatomic) GMSMutablePath* path;
 
 #pragma mark - initWithData
 - (instancetype)initWithData:(NSDictionary *)jsonDictionary;

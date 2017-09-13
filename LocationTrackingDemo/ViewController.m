@@ -33,6 +33,12 @@
 @property (nonatomic) UIView* containMapView;
 @property (nonatomic) GMSMapView* mapView;
 
+@property (nonatomic) NSMutableArray* arrayPolylineGreen;
+@property (nonatomic) GMSMutablePath* polylineGreenPath;
+@property (nonatomic) GMSPolyline* greenPolyline;
+@property (nonatomic) NSTimer* timer;
+@property (nonatomic) int i;
+
 @end
 
 @implementation ViewController
@@ -79,14 +85,14 @@
     UIButton* directionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [directionButton addTarget:self action:@selector(direction:) forControlEvents:UIControlEventTouchUpInside];
     [directionButton setShowsTouchWhenHighlighted:YES];
-    [directionButton setImage:[UIImage imageNamed:@"ic_direction"] forState:UIControlStateNormal];
+    [directionButton setImage:[UIImage imageNamed:@"ic_whiteDirection"] forState:UIControlStateNormal];
     UIBarButtonItem* directionBarButton = [[UIBarButtonItem alloc] initWithCustomView:directionButton];
     self.navigationItem.rightBarButtonItem = directionBarButton;
     
     UIButton* searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     [searchButton setShowsTouchWhenHighlighted:YES];
-    [searchButton setImage:[UIImage imageNamed:@"ic_search"] forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:@"ic_whiteSearch"] forState:UIControlStateNormal];
     UIBarButtonItem* searchBarButton = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
     self.navigationItem.leftBarButtonItem = searchBarButton;
 }
@@ -119,7 +125,7 @@
         
         make.bottom.equalTo(_containMapView.mas_bottom).offset(0);
         make.right.equalTo(_containMapView.mas_right).offset(0);
-        make.width.equalTo(@200);
+        make.width.mas_lessThanOrEqualTo(self.view.frame.size.width);
         make.height.equalTo(@70);
     }];
     
@@ -371,7 +377,6 @@
     
     // clear map
     [_mapView clear];
-    
     if (!_currentLocation) {
         
         _currentLocation = [_googleMapManager getCurrentLocation];
@@ -397,6 +402,7 @@
         
         [threadSafeForMutableArray enumerateObjectsUsingBlock:^(id object, NSUInteger idx, BOOL* stop) {
             
+            // get 20 places
             if (idx < 20) {
                 
                 SearchNearbyEntity* entity = object;
@@ -421,13 +427,20 @@
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     
     [_mapView setSelectedMarker:marker];
-  
-    // clear polyline
-    if(_currentPolyline) {
+
+    if ([_mapView.selectedMarker isEqual:_myloactionMarker]) {
         
-        [_currentPolyline setMap:nil];
+        return YES;
     }
+    // clear polyline
+    [_currentPolyline setMap:nil];
+    [_greenPolyline setMap:nil];
     
+    if (!_currentLocation) {
+        
+        _currentLocation = [_googleMapManager getCurrentLocation];
+    }
+
     [UIView transitionWithView:_directionView duration:0.4 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
         CLLocation* destinationLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
@@ -437,8 +450,19 @@
             
             if (directionDetailEntity) {
                 
-                directionDetailEntity.polyline.strokeWidth = 3;
+                directionDetailEntity.polyline.strokeWidth = 5;
                 directionDetailEntity.polyline.strokeColor = [UIColor redColor];
+              
+                _arrayPolylineGreen = [[NSMutableArray alloc] init];
+                _polylineGreenPath = [[GMSMutablePath alloc] init];
+                _i = 0;
+                
+                // animate green path with timer 100 points = 1s
+                _timer = [NSTimer scheduledTimerWithTimeInterval:0.05 repeats:true block:^(NSTimer * _Nonnull timer) {
+                    
+                    [self animate:directionDetailEntity.path];
+                }];
+
                 directionDetailEntity.polyline.map = _mapView;
                 _currentPolyline = directionDetailEntity.polyline;
                 // update zoom and point
@@ -452,6 +476,46 @@
     } completion:nil];
     
     return YES;
+}
+
+#pragma mark - animate for path
+
+- (void)animate:(GMSPath *)path {
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        
+        if (_i >= path.count) {
+            
+            _i = 0;
+            _polylineGreenPath = [[GMSMutablePath alloc] init];
+            for (GMSPolyline* line in _arrayPolylineGreen) {
+                
+                line.map = nil;
+            }
+            [_timer invalidate];
+            _myloactionMarker.position = _currentLocation.coordinate;
+            _myloactionMarker.map = _mapView;
+        } else {
+            
+            [CATransaction begin];
+            [CATransaction setAnimationDuration:0.05];
+//            CGPoint point = [_mapView.projection pointForCoordinate:[path coordinateAtIndex:_i]];
+//            GMSCameraUpdate* camera = [GMSCameraUpdate setTarget:[_mapView.projection coordinateForPoint:point]];
+//            [_mapView animateWithCameraUpdate:camera];
+            _myloactionMarker.position = [path coordinateAtIndex:_i];
+            _myloactionMarker.map = _mapView;
+            
+            [_polylineGreenPath addCoordinate:[path coordinateAtIndex:_i]];
+            _greenPolyline = [GMSPolyline polylineWithPath:_polylineGreenPath];
+            _greenPolyline.strokeColor = [UIColor greenColor];
+            _greenPolyline.strokeWidth = 3;
+            _greenPolyline.map = _mapView;
+            [_arrayPolylineGreen addObject:_greenPolyline];
+            
+            [CATransaction commit];
+            _i++;
+        }
+    });
 }
 
 @end

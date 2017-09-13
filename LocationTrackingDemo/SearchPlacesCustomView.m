@@ -99,12 +99,12 @@
     [self addSubview:_distanceCompoboxCustomView];
     
     _searchButton = [[UIButton alloc] init];
-    [_searchButton setImage:[UIImage imageNamed:@"ic_direction"] forState:UIControlStateNormal];
+    [_searchButton setImage:[UIImage imageNamed:@"ic_whiteDirection"] forState:UIControlStateNormal];
     [_searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_searchButton];
     
     _placeFindTableView = [[UITableView alloc] init];
-    _placeFindTableViewSource =[[CompoboxTableViewSource alloc] initWithTableView:_placeFindTableView andType:CompoboxTypeFindPlace];
+    _placeFindTableViewSource = [[CompoboxTableViewSource alloc] initWithTableView:_placeFindTableView andType:CompoboxTypeFindPlace];
     _placeFindTableViewSource.delegate = self;
     [self addSubview:_placeFindTableView];
     
@@ -145,7 +145,7 @@
         make.height.mas_offset(30);
     }];
     
-    float placeFindWidth = [_placeFindLabel.text boundingRectWithSize:_placeFindLabel.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:_placeFindLabel.font} context:nil].size.width;
+    float placeFindWidth = [_placeFindLabel.text boundingRectWithSize:_placeFindLabel.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:_placeFindLabel.font } context:nil].size.width;
     
     [_placeFindLabel mas_makeConstraints:^(MASConstraintMaker* make) {
         
@@ -163,7 +163,7 @@
         make.height.mas_offset(30);
     }];
     
-    float distanceWidth = [_distanceLabel.text boundingRectWithSize:_distanceLabel.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:_distanceLabel.font} context:nil].size.width;
+    float distanceWidth = [_distanceLabel.text boundingRectWithSize:_distanceLabel.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:_distanceLabel.font } context:nil].size.width;
     
     [_distanceLabel mas_makeConstraints:^(MASConstraintMaker* make) {
         
@@ -193,15 +193,15 @@
     [_placeFindTableView mas_makeConstraints:^(MASConstraintMaker* make) {
         
         make.top.equalTo(_placeFindCompoboxCustomView.mas_bottom).offset(0);
-        make.centerX.equalTo(_placeFindCompoboxCustomView);
-        make.width.mas_equalTo(_placeFindCompoboxCustomView.mas_width);
+        make.left.equalTo(_placeFindLabel.mas_right).offset(5);
+        make.width.mas_greaterThanOrEqualTo(_placeFindCompoboxCustomView.mas_width);
         make.height.mas_offset(0);
     }];
     
     [_distanceTableView mas_makeConstraints:^(MASConstraintMaker* make) {
         
         make.top.equalTo(_distanceCompoboxCustomView.mas_bottom).offset(0);
-        make.centerX.equalTo(_distanceCompoboxCustomView);
+        make.left.equalTo(_distanceLabel.mas_right).offset(5);
         make.width.mas_equalTo(_distanceCompoboxCustomView.mas_width);
         make.height.mas_offset(0);
     }];
@@ -213,7 +213,7 @@
 
 #pragma mark - startTextFieldDidChange
 
-- (void)startTextFieldDidChange:(UITextField*)textField {
+- (void)startTextFieldDidChange:(UITextField *)textField {
     
 }
 
